@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
@@ -152,7 +153,7 @@ const MultiAgentSection = () => {
               automation strategy, boosting productivity and efficiency across all levels 
               of your organization through seamless collaboration.
             </motion.p>
-          </div></div>
+          </div>
 
           {/* Workflow Architecture Visualization */}
           <motion.div 
