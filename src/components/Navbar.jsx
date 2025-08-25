@@ -316,12 +316,20 @@ const Navbar = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}
               >
+                {/* Home Button for Mobile */}
+                <Link
+                  to="/"
+                  className="w-full flex items-center px-4 py-3 text-base text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 font-medium"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <span className="font-medium tracking-wide">Home</span>
+                </Link>
                 {navItems.map((item, index) => (
                   <div key={item.name}>
                     <motion.button
                       onClick={() => {
                         handleDropdownToggle(index);
-                        if (item.sectionId) handleMainNavClick(item);
+                        // Don't redirect on mobile, only toggle dropdown
                       }}
                       className="w-full flex items-center justify-between px-4 py-3 text-base text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 font-medium"
                       whileHover={{ x: 4 }}

@@ -8,6 +8,7 @@ import NotFound from './pages/NotFound';
 import Loader from './components/SiteLoader';
 import TitleUpdater from './components/TitleUpdater';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 // Platform Pages
 import AgenticWorkflows from './pages/platform/AgenticWorkflows';
@@ -61,6 +62,7 @@ function App() {
       
       {!isLoading && (
         <div className="App">
+          <ScrollToTop />
           <TitleUpdater />
           <Navbar />
           
