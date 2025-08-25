@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -20,6 +19,7 @@ import {
   MessageCircle,
   Zap
 } from 'lucide-react';
+import Logo from '../assets/Logo.png'
 
 const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -102,7 +102,7 @@ const Navbar = () => {
       sectionId: 'about',
       items: [
         { name: 'Company', icon: Building, path: '/about/company' },
-        { name: 'Team', icon: Users, path: '/about/team' },
+        // { name: 'Team', icon: Users, path: '/about/team' },
         { name: 'Careers', icon: Zap, path: '/about/careers' },
         { name: 'Contact', icon: MessageCircle, path: '/about/contact' }
       ]
@@ -125,9 +125,11 @@ const Navbar = () => {
 
   return (
     <>
-      <motion.nav 
+      <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans ${
-          scrolled ? 'bg-black/85 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'
+          scrolled
+            ? "bg-black/85 backdrop-blur-xl border-b border-white/10"
+            : "bg-transparent"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -135,18 +137,32 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <motion.div 
+            <motion.div
               className="flex items-center"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <Link to="/" className="text-white font-light text-xl tracking-tight hover:text-white/80 transition-colors">
-                Elam AI
+              <Link
+                to="/"
+                className="flex items-center pl-4" // Added pl-4 for left padding
+                onClick={() => {
+                  setActiveDropdown(null);
+                  setIsMobileMenuOpen(false);
+                  // Add any additional logic if needed
+                }}
+                style={{ cursor: "pointer" }}
+              >
+                <img
+                  src={Logo}
+                  alt="Elam AI Logo"
+                  className="h-8 w-auto"
+                  style={{ maxHeight: 32 }}
+                />
               </Link>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="hidden md:flex items-center space-x-1"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -164,7 +180,9 @@ const Navbar = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <span className="font-medium tracking-wide">{item.name}</span>
+                    <span className="font-medium tracking-wide">
+                      {item.name}
+                    </span>
                     <motion.div
                       animate={{ rotate: activeDropdown === index ? 180 : 0 }}
                       transition={{ duration: 0.2 }}
@@ -196,7 +214,9 @@ const Navbar = () => {
                                   <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 mr-3 group-hover:bg-white/20 transition-colors duration-200">
                                     <IconComponent className="h-4 w-4" />
                                   </div>
-                                  <span className="font-light leading-relaxed">{subItem.name}</span>
+                                  <span className="font-light leading-relaxed">
+                                    {subItem.name}
+                                  </span>
                                 </Link>
                               </motion.div>
                             );
@@ -209,24 +229,27 @@ const Navbar = () => {
               ))}
             </motion.div>
 
-            <motion.div 
+            <motion.div
               className="hidden md:flex items-center"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <motion.button 
-                className="bg-white text-gray-900 px-6 py-2.5 rounded-xl text-sm font-light transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-gray-100"
-                whileHover={{ 
+              <motion.div
+                whileHover={{
                   scale: 1.02,
                   y: -1,
-                  transition: { duration: 0.2 }
+                  transition: { duration: 0.2 },
                 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => scrollToSection('contact')}
               >
-                Speak to us
-              </motion.button>
+                <Link
+                  to="/about/contact"
+                  className="bg-white text-gray-900 px-6 py-2.5 rounded-xl text-sm font-light transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-gray-100 inline-block"
+                >
+                  Speak to us
+                </Link>
+              </motion.div>
             </motion.div>
 
             <div className="md:hidden">
@@ -268,14 +291,17 @@ const Navbar = () => {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             className="fixed inset-0 z-40 md:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={handleMobileMenuToggle} />
+            <div
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              onClick={handleMobileMenuToggle}
+            />
           </motion.div>
         )}
       </AnimatePresence>
@@ -283,7 +309,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl border-b border-white/10 md:hidden font-sans"
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
@@ -291,14 +317,27 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <div className="p-6 pt-20">
-              <motion.div 
+              <motion.div
                 className="flex items-center justify-between mb-8"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
-                <Link to="/" className="text-white font-light text-xl tracking-tight">
-                  Elam AI
+                <Link
+                  to="/"
+                  className="flex items-center text-white font-light text-xl tracking-tight pl-4" // Added pl-4 for left padding
+                  onClick={() => {
+                    setActiveDropdown(null);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  style={{ cursor: "pointer" }}
+                >
+                  <img
+                    src={Logo}
+                    alt="Elam AI Logo"
+                    className="h-8 w-auto"
+                    style={{ maxHeight: 32 }}
+                  />
                 </Link>
                 <motion.button
                   onClick={handleMobileMenuToggle}
@@ -310,7 +349,7 @@ const Navbar = () => {
                 </motion.button>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="space-y-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -335,7 +374,9 @@ const Navbar = () => {
                       whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <span className="font-medium tracking-wide">{item.name}</span>
+                      <span className="font-medium tracking-wide">
+                        {item.name}
+                      </span>
                       <motion.div
                         animate={{ rotate: activeDropdown === index ? 180 : 0 }}
                         transition={{ duration: 0.2 }}
@@ -367,7 +408,9 @@ const Navbar = () => {
                                     }}
                                   >
                                     <IconComponent className="h-4 w-4 mr-3 opacity-60" />
-                                    <span className="font-light leading-relaxed">{subItem.name}</span>
+                                    <span className="font-light leading-relaxed">
+                                      {subItem.name}
+                                    </span>
                                   </Link>
                                 </motion.div>
                               );
@@ -380,21 +423,21 @@ const Navbar = () => {
                 ))}
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="mt-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
-                <motion.button 
+                <motion.button
                   className="w-full bg-white text-gray-900 px-6 py-3 rounded-xl text-base font-light transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-gray-100"
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.01,
-                    y: -1
+                    y: -1,
                   }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => {
-                    scrollToSection('contact');
+                    scrollToSection("contact");
                     setIsMobileMenuOpen(false);
                   }}
                 >
@@ -402,16 +445,16 @@ const Navbar = () => {
                 </motion.button>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 className="mt-8 pt-6 border-t border-white/10"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.4 }}
               >
                 <p className="text-white/70 text-base leading-relaxed font-light">
-                  With Elam AI, build an AI workforce that automates tasks efficiently. Deploy 
-                  intelligent agents to streamline operations and improve performance across 
-                  your business today!
+                  With Elam AI, build an AI workforce that automates tasks
+                  efficiently. Deploy intelligent agents to streamline
+                  operations and improve performance across your business today!
                 </p>
               </motion.div>
             </div>

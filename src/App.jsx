@@ -37,9 +37,10 @@ import Community from './pages/resources/Community';
 
 // About Pages
 import Company from './pages/about/Company';
-import Team from './pages/about/Team';
+// import Team from './pages/about/Team';
 import Careers from './pages/about/Careers';
 import Contact from './pages/about/Contact';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -97,7 +98,7 @@ function App() {
             
             {/* About Routes */}
             <Route path="/about/company" element={<Company />} />
-            <Route path="/about/team" element={<Team />} />
+            {/* <Route path="/about/team" element={<Team />} /> */}
             <Route path="/about/careers" element={<Careers />} />
             <Route path="/about/contact" element={<Contact />} />
             
@@ -106,6 +107,8 @@ function App() {
           </Routes>
 
           <Footer />
+          {/* Floating WhatsApp - shows only on Home and Contact when user scrolls, auto hides */}
+          <FloatingWhatsApp phoneNumber="+919747419297" message="Hi! I came from your website." />
         </div>
       )}
     </>

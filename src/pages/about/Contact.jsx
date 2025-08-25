@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import PageLayout from '../../components/PageLayout';
-import { Mail, Phone, MapPin, ArrowRight, Send, Clock, Globe } from 'lucide-react';
+import { Mail, Phone, ArrowRight, Send } from 'lucide-react';
 
 const Contact = () => {
   const containerVariants = {
@@ -31,46 +30,15 @@ const Contact = () => {
       icon: Mail,
       title: "Email Us",
       description: "Get in touch with our team for any inquiries or support.",
-      contact: "hello@elamai.com",
+      contact: "contact@elamai.in",
       action: "Send Email"
     },
     {
       icon: Phone,
       title: "Call Us",
       description: "Speak directly with our AI automation specialists.",
-      contact: "+1 (555) 123-4567",
+      contact: "+91 97474 19297",
       action: "Call Now"
-    },
-    {
-      icon: MapPin,
-      title: "Visit Us",
-      description: "Come visit our headquarters for in-person consultations.",
-      contact: "San Francisco, CA",
-      action: "Get Directions"
-    }
-  ];
-
-  const offices = [
-    {
-      city: "San Francisco",
-      country: "United States",
-      address: "123 AI Innovation Drive, San Francisco, CA 94105",
-      timezone: "PST (UTC-8)",
-      hours: "Mon-Fri: 9:00 AM - 6:00 PM"
-    },
-    {
-      city: "London",
-      country: "United Kingdom",
-      address: "456 Tech Hub Lane, London, EC2A 4DP",
-      timezone: "GMT (UTC+0)",
-      hours: "Mon-Fri: 9:00 AM - 5:00 PM"
-    },
-    {
-      city: "Singapore",
-      country: "Singapore",
-      address: "789 Innovation Center, Singapore 018956",
-      timezone: "SGT (UTC+8)",
-      hours: "Mon-Fri: 9:00 AM - 6:00 PM"
     }
   ];
 
@@ -83,7 +51,7 @@ const Contact = () => {
     >
       {/* Contact Methods */}
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+        className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -94,18 +62,18 @@ const Contact = () => {
           return (
             <motion.div
               key={index}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:border-white/20 transition-all duration-300 text-center"
+              className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300 text-center"
               variants={itemVariants}
-              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              whileHover={{ y: -3, transition: { duration: 0.2 } }}
             >
-              <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <IconComponent className="w-8 h-8 text-white" />
+              <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <IconComponent className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-medium text-white mb-4">{method.title}</h3>
-              <p className="text-white/70 leading-relaxed font-light mb-6">{method.description}</p>
-              <div className="text-white font-medium mb-6">{method.contact}</div>
+              <h3 className="text-lg font-medium text-white mb-2">{method.title}</h3>
+              <p className="text-white/60 text-sm leading-relaxed mb-3">{method.description}</p>
+              <div className="text-white font-medium mb-4">{method.contact}</div>
               <motion.button
-                className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 px-6 py-3 rounded-xl transition-all duration-300 text-white font-medium"
+                className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 px-5 py-2.5 rounded-lg transition-all duration-300 text-white text-sm font-medium"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -119,92 +87,101 @@ const Contact = () => {
 
       {/* Contact Form */}
       <motion.div
-        className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 mb-16"
+        className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 mb-8"
         variants={itemVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl md:text-3xl font-light text-white mb-2">
             Send Us a Message
           </h2>
-          <p className="text-white/70 text-lg font-light max-w-2xl mx-auto">
+          <p className="text-white/70 text-sm font-light max-w-xl mx-auto">
             Fill out the form below and we'll get back to you within 24 hours.
           </p>
         </div>
 
-        <form className="max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <form className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-white/70 text-sm font-medium mb-2">
+              <label className="block text-white/70 text-xs font-medium mb-1">
                 First Name *
               </label>
               <input
                 type="text"
-                className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
                 placeholder="John"
                 required
               />
             </div>
             <div>
-              <label className="block text-white/70 text-sm font-medium mb-2">
+              <label className="block text-white/70 text-xs font-medium mb-1">
                 Last Name *
               </label>
               <input
                 type="text"
-                className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
                 placeholder="Doe"
                 required
               />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-white/70 text-sm font-medium mb-2">
+              <label className="block text-white/70 text-xs font-medium mb-1">
                 Email Address *
               </label>
               <input
                 type="email"
-                className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
                 placeholder="john@company.com"
                 required
               />
             </div>
             <div>
-              <label className="block text-white/70 text-sm font-medium mb-2">
+              <label className="block text-white/70 text-xs font-medium mb-1">
                 Company
               </label>
               <input
                 type="text"
-                className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
+                className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
                 placeholder="Your Company"
               />
             </div>
           </div>
 
-          <div className="mb-6">
-            <label className="block text-white/70 text-sm font-medium mb-2">
+          <div className="mb-4">
+            <label className="block text-white/70 text-xs font-medium mb-1">
               Subject *
             </label>
-            <select className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/40 transition-colors" required>
-              <option value="">Select a topic</option>
-              <option value="general">General Inquiry</option>
-              <option value="demo">Request Demo</option>
-              <option value="partnership">Partnership</option>
-              <option value="support">Technical Support</option>
-              <option value="pricing">Pricing Information</option>
+            <select 
+              className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-white/40 transition-colors appearance-none"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
+                backgroundPosition: 'right 0.5rem center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: '1.2em 1.2em'
+              }}
+              required
+            >
+              <option value="" style={{backgroundColor: '#1a1a1a', color: '#ffffff'}}>Select a topic</option>
+              <option value="general" style={{backgroundColor: '#1a1a1a', color: '#ffffff'}}>General Inquiry</option>
+              <option value="demo" style={{backgroundColor: '#1a1a1a', color: '#ffffff'}}>Request Demo</option>
+              <option value="partnership" style={{backgroundColor: '#1a1a1a', color: '#ffffff'}}>Partnership</option>
+              <option value="support" style={{backgroundColor: '#1a1a1a', color: '#ffffff'}}>Technical Support</option>
+              <option value="pricing" style={{backgroundColor: '#1a1a1a', color: '#ffffff'}}>Pricing Information</option>
             </select>
           </div>
 
-          <div className="mb-8">
-            <label className="block text-white/70 text-sm font-medium mb-2">
+          <div className="mb-6">
+            <label className="block text-white/70 text-xs font-medium mb-1">
               Message *
             </label>
             <textarea
-              rows="6"
-              className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors resize-none"
+              rows="3"
+              className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors resize-none"
               placeholder="Tell us about your project and how we can help..."
               required
             ></textarea>
@@ -213,60 +190,20 @@ const Contact = () => {
           <div className="text-center">
             <motion.button
               type="submit"
-              className="inline-flex items-center space-x-3 bg-white text-black px-8 py-4 rounded-xl font-medium hover:bg-white/90 transition-all duration-300"
+              className="inline-flex items-center space-x-2 bg-white text-black px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-white/90 transition-all duration-300"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Send className="w-5 h-5" />
+              <Send className="w-4 h-4" />
               <span>Send Message</span>
             </motion.button>
           </div>
         </form>
       </motion.div>
 
-      {/* Global Offices */}
-      <motion.div
-        variants={itemVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-light text-white mb-4">
-            Global Offices
-          </h2>
-          <p className="text-white/70 text-lg font-light max-w-2xl mx-auto">
-            Find us around the world. Our international presence ensures 24/7 support for your AI automation needs.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {offices.map((office, index) => (
-            <motion.div
-              key={index}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300"
-              variants={itemVariants}
-              whileHover={{ y: -2, transition: { duration: 0.2 } }}
-            >
-              <div className="flex items-center mb-4">
-                <Globe className="w-5 h-5 text-white mr-3" />
-                <h3 className="text-xl font-medium text-white">{office.city}</h3>
-              </div>
-              <div className="text-white/50 text-sm mb-2">{office.country}</div>
-              <div className="text-white/70 text-sm mb-4">{office.address}</div>
-              <div className="flex items-center text-white/60 text-sm mb-2">
-                <Clock className="w-4 h-4 mr-2" />
-                {office.hours}
-              </div>
-              <div className="text-white/60 text-sm">{office.timezone}</div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
       {/* CTA Section */}
       <motion.div
-        className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10 text-center mt-16"
+        className="bg-gradient-to-r from-white/10 to-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10 text-center"
         variants={itemVariants}
         initial="hidden"
         whileInView="visible"

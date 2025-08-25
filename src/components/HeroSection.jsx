@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, CheckCircle, MessageSquare, Mail, Settings } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 
 // Mock BlurText component since it's not available
 const BlurText = ({ text, className, onAnimationComplete, ...props }) => {
@@ -156,11 +158,15 @@ const HeroSection = () => {
                   <div className="flex justify-center items-center gap-6">
                     <div className="flex items-center space-x-2 text-white/80">
                       <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                      <span className="font-light text-sm">24/7 Automation</span>
+                      <span className="font-light text-sm">
+                        24/7 Automation
+                      </span>
                     </div>
                     <div className="flex items-center space-x-2 text-white/80">
                       <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                      <span className="font-light text-sm">Instant Responses</span>
+                      <span className="font-light text-sm">
+                        Instant Responses
+                      </span>
                     </div>
                   </div>
                   <div className="flex justify-center">
@@ -190,8 +196,8 @@ const HeroSection = () => {
 
               {/* CTA */}
               <motion.div className="mb-16 sm:mb-20" variants={itemVariants}>
-                <motion.button
-                  className="inline-flex items-center justify-center bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-light transition-all duration-300 text-sm sm:text-base shadow-lg hover:shadow-xl group hover:bg-gray-100"
+                <motion.div
+                  variants={itemVariants}
                   whileHover={{
                     scale: 1.02,
                     y: -2,
@@ -201,11 +207,15 @@ const HeroSection = () => {
                     scale: 0.98,
                     transition: { duration: 0.1 },
                   }}
-                  type="button"
                 >
-                  <span>Speak to Us</span>
-                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-                </motion.button>
+                  <Link
+                    to="/platform/ai-agent-platform"
+                    className="inline-flex items-center justify-center bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-light transition-all duration-300 text-sm sm:text-base shadow-lg hover:shadow-xl group hover:bg-gray-100"
+                  >
+                    <span>Explore Platform</span>
+                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                  </Link>
+                </motion.div>
               </motion.div>
             </div>
           </div>
@@ -213,25 +223,32 @@ const HeroSection = () => {
           {/* Services Section */}
           <motion.div className="pb-16 sm:pb-20" variants={itemVariants}>
             <div className="max-w-5xl mx-auto">
-              <motion.div className="text-center mb-8 sm:mb-12" variants={itemVariants}>
+              <motion.div
+                className="text-center mb-8 sm:mb-12"
+                variants={itemVariants}
+              >
                 <h3 className="text-xl sm:text-2xl font-light text-white mb-3">
                   Comprehensive Automation Services
                 </h3>
                 <p className="text-white/60 font-light text-sm sm:text-base">
-                  Professional AI solutions tailored to your business requirements
+                  Professional AI solutions tailored to your business
+                  requirements
                 </p>
               </motion.div>
 
               {/* Horizontal Scrollable Services - Mobile */}
               <div className="block md:hidden">
-                <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 px-1" style={{ scrollSnapType: 'x mandatory' }}>
+                <div
+                  className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 px-1"
+                  style={{ scrollSnapType: "x mandatory" }}
+                >
                   {automationServices.map((service, index) => {
                     const IconComponent = service.icon;
                     return (
                       <motion.div
                         key={service.title}
                         className="flex-shrink-0 w-72 bg-white/5 backdrop-blur-sm rounded-lg p-5 border border-white/10"
-                        style={{ scrollSnapAlign: 'start' }}
+                        style={{ scrollSnapAlign: "start" }}
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{
@@ -259,7 +276,9 @@ const HeroSection = () => {
                               delay: index * 0.5,
                             }}
                           />
-                          <span className="text-white/40 text-xs font-light">Available</span>
+                          <span className="text-white/40 text-xs font-light">
+                            Available
+                          </span>
                         </div>
                       </motion.div>
                     );
@@ -306,7 +325,9 @@ const HeroSection = () => {
                             delay: index * 0.5,
                           }}
                         />
-                        <span className="text-white/40 text-xs font-light">Available</span>
+                        <span className="text-white/40 text-xs font-light">
+                          Available
+                        </span>
                       </div>
                     </motion.div>
                   );

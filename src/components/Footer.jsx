@@ -4,48 +4,44 @@ import {
   ArrowRight, 
   Mail, 
   MapPin, 
-  Phone,
   Linkedin,
-  Twitter,
-  Github,
-  Bot,
-  Users,
-  FileText,
-  Building
+  Instagram
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import Logo from '../assets/Logo.png';
+
 
 const Footer = () => {
   const footerLinks = {
     platform: [
-      { name: 'AI Agent Platform', href: '#' },
-      { name: 'Agentic Workflows', href: '#' },
-      { name: 'Integrations', href: '#' },
-      { name: 'Security', href: '#' }
+      { name: 'AI Agent Platform', href: '/platform/ai-agent-platform' },
+      { name: 'Agentic Workflows', href: '/platform/agentic-workflows' },
+      { name: 'Integrations', href: '/platform/integrations' },
+      { name: 'Security', href: '/platform/security-deployment' }
     ],
     solutions: [
-      { name: 'Enterprise', href: '#' },
-      { name: 'Small Business', href: '#' },
-      { name: 'Customer Support', href: '#' },
-      { name: 'Sales Automation', href: '#' }
+      { name: 'Enterprise', href: '/solutions/enterprise' },
+      { name: 'Small Business', href: '/solutions/small-business' },
+      { name: 'Developer Tools', href: '/solutions/developer-tools' },
+      { name: 'Custom Solutions', href: '/solutions/custom-solutions' }
     ],
     resources: [
-      { name: 'Documentation', href: '#' },
-      { name: 'API Reference', href: '#' },
-      { name: 'Tutorials', href: '#' },
-      { name: 'Community', href: '#' }
+      { name: 'Documentation', href: '/resources/documentation' },
+      { name: 'API Reference', href: '/resources/api-reference' },
+      { name: 'Tutorials', href: '/resources/tutorials' },
+      { name: 'Community', href: '/resources/community' }
     ],
     company: [
-      { name: 'About Us', href: '#' },
-      { name: 'Careers', href: '#' },
-      { name: 'Contact', href: '#' },
+      { name: 'About Us', href: '/about/company' },
+      { name: 'Careers', href: '/about/careers' },
+      { name: 'Contact', href: '/about/contact' },
       { name: 'Privacy Policy', href: '#' }
     ]
   };
 
   const socialLinks = [
-    { icon: Linkedin, href: '#', name: 'LinkedIn' },
-    { icon: Twitter, href: '#', name: 'Twitter' },
-    { icon: Github, href: '#', name: 'GitHub' }
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/elam-ai', name: 'LinkedIn' },
+    { icon: Instagram, href: 'https://www.instagram.com/elamai.in/', name: 'Instagram' }
   ];
 
   const containerVariants = {
@@ -111,9 +107,15 @@ const Footer = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
-                <h3 className="text-white font-light text-2xl sm:text-3xl tracking-tight mb-4">
-                  Elam AI
-                </h3>
+                <Link to="/" className="inline-block mb-4">
+                  <motion.img
+                    src={Logo}
+                    alt="Elam AI"
+                    className="h-8 sm:h-10 w-auto"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </Link>
                 <p className="text-white/70 text-sm sm:text-base leading-relaxed font-light max-w-xs">
                   Build an AI workforce that automates tasks efficiently and transforms your business operations.
                 </p>
@@ -127,7 +129,7 @@ const Footer = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <Mail className="w-4 h-4" />
-                  <span>hello@beamai.com</span>
+                  <span>info@elamai.in</span>
                 </motion.div>
                 <motion.div 
                   className="flex items-center gap-3 text-white/60 text-sm font-light"
@@ -135,7 +137,7 @@ const Footer = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <MapPin className="w-4 h-4" />
-                  <span>San Francisco, CA</span>
+                  <span>Calicut</span>
                 </motion.div>
               </div>
 
@@ -145,6 +147,8 @@ const Footer = () => {
                   <motion.a
                     key={social.name}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-9 h-9 bg-white/10 rounded-lg flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 transition-all duration-200"
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
@@ -169,13 +173,14 @@ const Footer = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
                   >
-                    <motion.a
-                      href={link.href}
-                      className="text-white/60 hover:text-white text-sm font-light transition-colors duration-200 block"
-                      whileHover={{ x: 4 }}
-                    >
-                      {link.name}
-                    </motion.a>
+                    <motion.div whileHover={{ x: 4 }}>
+                      <Link
+                        to={link.href}
+                        className="text-white/60 hover:text-white text-sm font-light transition-colors duration-200 block"
+                      >
+                        {link.name}
+                      </Link>
+                    </motion.div>
                   </motion.li>
                 ))}
               </ul>
@@ -191,13 +196,14 @@ const Footer = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
                   >
-                    <motion.a
-                      href={link.href}
-                      className="text-white/60 hover:text-white text-sm font-light transition-colors duration-200 block"
-                      whileHover={{ x: 4 }}
-                    >
-                      {link.name}
-                    </motion.a>
+                    <motion.div whileHover={{ x: 4 }}>
+                      <Link
+                        to={link.href}
+                        className="text-white/60 hover:text-white text-sm font-light transition-colors duration-200 block"
+                      >
+                        {link.name}
+                      </Link>
+                    </motion.div>
                   </motion.li>
                 ))}
               </ul>
@@ -213,13 +219,14 @@ const Footer = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.7 + index * 0.1 }}
                   >
-                    <motion.a
-                      href={link.href}
-                      className="text-white/60 hover:text-white text-sm font-light transition-colors duration-200 block"
-                      whileHover={{ x: 4 }}
-                    >
-                      {link.name}
-                    </motion.a>
+                    <motion.div whileHover={{ x: 4 }}>
+                      <Link
+                        to={link.href}
+                        className="text-white/60 hover:text-white text-sm font-light transition-colors duration-200 block"
+                      >
+                        {link.name}
+                      </Link>
+                    </motion.div>
                   </motion.li>
                 ))}
               </ul>
@@ -235,13 +242,23 @@ const Footer = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
                   >
-                    <motion.a
-                      href={link.href}
-                      className="text-white/60 hover:text-white text-sm font-light transition-colors duration-200 block"
-                      whileHover={{ x: 4 }}
-                    >
-                      {link.name}
-                    </motion.a>
+                    <motion.div whileHover={{ x: 4 }}>
+                      {link.href.startsWith('/') ? (
+                        <Link
+                          to={link.href}
+                          className="text-white/60 hover:text-white text-sm font-light transition-colors duration-200 block"
+                        >
+                          {link.name}
+                        </Link>
+                      ) : (
+                        <a
+                          href={link.href}
+                          className="text-white/60 hover:text-white text-sm font-light transition-colors duration-200 block"
+                        >
+                          {link.name}
+                        </a>
+                      )}
+                    </motion.div>
                   </motion.li>
                 ))}
               </ul>
@@ -262,8 +279,8 @@ const Footer = () => {
                   Transform your business with AI agents today.
                 </p>
               </div>
-              <motion.button
-                className="inline-flex items-center gap-3 bg-white text-gray-900 px-6 py-3 rounded-xl font-light transition-all duration-300 text-sm shadow-lg hover:shadow-xl hover:bg-gray-100 group flex-shrink-0"
+             
+              <motion.div
                 whileHover={{
                   scale: 1.02,
                   y: -2,
@@ -274,13 +291,18 @@ const Footer = () => {
                   transition: { duration: 0.1 },
                 }}
               >
-                Speak to us
-                <motion.div
-                  className="group-hover:translate-x-1 transition-transform duration-300"
+                <Link 
+                  to="/about/contact"
+                  className="inline-flex items-center gap-3 bg-white text-gray-900 px-6 py-3 rounded-xl font-light transition-all duration-300 text-sm shadow-lg hover:shadow-xl hover:bg-gray-100 group flex-shrink-0"
                 >
-                  <ArrowRight className="w-4 h-4" />
-                </motion.div>
-              </motion.button>
+                  Speak to us
+                  <motion.div
+                    className="group-hover:translate-x-1 transition-transform duration-300"
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.div>
+                </Link>
+              </motion.div>
             </div>
           </motion.div>
         </motion.div>

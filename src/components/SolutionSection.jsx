@@ -155,21 +155,6 @@ const SolutionsSection = () => {
               your business today!
             </motion.p>
             
-            <motion.button
-              className="inline-flex items-center justify-center bg-white text-gray-900 px-8 py-4 rounded-xl font-light transition-all duration-300 text-base shadow-lg hover:shadow-xl hover:bg-gray-100"
-              variants={itemVariants}
-              whileHover={{
-                scale: 1.02,
-                y: -2,
-                transition: { duration: 0.2 },
-              }}
-              whileTap={{
-                scale: 0.98,
-                transition: { duration: 0.1 },
-              }}
-            >
-              Speak to us
-            </motion.button>
           </div>
 
           {/* Compact Solutions Carousel */}
