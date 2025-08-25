@@ -110,7 +110,7 @@ const Navbar = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <div className="text-white font-light text-xl tracking-tight">
-                Beam AI
+                Elam AI
               </div>
             </motion.div>
 
@@ -268,7 +268,7 @@ const Navbar = () => {
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
                 <div className="text-white font-light text-xl tracking-tight">
-                  Beam AI
+                  Elam AI
                 </div>
                 <motion.button
                   onClick={handleMobileMenuToggle}
@@ -366,7 +366,7 @@ const Navbar = () => {
                 transition={{ duration: 0.4, delay: 0.4 }}
               >
                 <p className="text-white/70 text-base leading-relaxed font-light">
-                  With Beam AI, build an AI workforce that automates tasks efficiently. Deploy 
+                  With Elam AI, build an AI workforce that automates tasks efficiently. Deploy 
                   intelligent agents to streamline operations and improve performance across 
                   your business today!
                 </p>

@@ -6,6 +6,7 @@ import Homepage from './pages/Homepage';
 import NotFound from './pages/NotFound';
 import Loader from './components/SiteLoader';
 import TitleUpdater from './components/TitleUpdater';
+import Footer from './components/Footer';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,7 +15,7 @@ function App() {
     // Simulate loading time - you can customize this based on your needs
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // 3 seconds loading time
+    }, 2000); // 2 seconds loading time
 
     // Optional: Add real loading logic here
     // For example, wait for critical resources to load:
@@ -52,6 +53,9 @@ function App() {
             {/* 404 Route - Must be last */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+
+          {/* Footer will be visible on all pages */}
+          <Footer />
         </div>
       )}
     </>

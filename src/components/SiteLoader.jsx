@@ -80,7 +80,7 @@ const Loader = ({ isLoading = true, onComplete }) => {
                 animate={{ opacity: [1, 0.8, 1] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               >
-                Beam AI
+                Elam AI
               </motion.div>
             </motion.div>
 

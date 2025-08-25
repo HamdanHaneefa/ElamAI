@@ -150,7 +150,7 @@ const SolutionsSection = () => {
               className="text-base sm:text-lg lg:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed font-light mb-10"
               variants={itemVariants}
             >
-              With Beam AI, build an AI workforce that automates tasks efficiently. Deploy 
+              With Elam AI, build an AI workforce that automates tasks efficiently. Deploy 
               intelligent agents to streamline operations and improve performance across 
               your business today!
             </motion.p>
