@@ -1,0 +1,23 @@
+f you check these repo there are some incompletions which means now there i only three routes
+
+so i wanted to create route for each sections which means ,
+first like an example if i click on the about section i wanted to open a new page for the about use page i wanted route for every section which is in the navbar itmes so gave route for each page
+
+an each page should be wanted to follow the style an font family font size all the things that i've used in the site which means i wanted that workflow or style detaily in everywhere thats what i mean
+
+then you can gave the details with the reference in each page wer are a company name of ElamAI provideing ai automation agency so make it with it
+
+an also there is a another thing you should wanted to know that if i hover on ai agents it shows some nav items below so if i click on the nav items it will go to its page it is wanted , but i i cllick on the ai agents i wanted to go the ai agents section in the homepage you withoug reloading thats what i want
+
+the next thing is the framer motion is not working as well which means if i scroll down the text is wanted to comiing from down to the position that effect i wanted it in everywhere to make the site more user friendly also every button should be wanted to make accessible so do it that too
+
+the main thing is every page wanted a different route an the structurer of the page should wanted to follow something like in the reference image that i've provided in here but the font an it size should be wante that i've used in every wehre in my site that same font
+
+there is a section in the hompepage Empowering Autonomous
+Agents to Work Together that section is not aligned well so it should be watned to fix tooo
+
+every page should be wanted responsive an at the same time if my site nowhere will be looks conjusted everywhere will be neet clean an well aligned professional styles so keep it in everywhere , an also i didnt use more space to show any things which means if a card will be there i didnt use it as a vertically instead i use it as horizontally to keep the space so use that type fo things i dont wanted to looks like the site very conjusted an at the same time not taken more space for each sections tooo so ensure that thing
+
+so these are my needs you should wanted to create a each page for everywhere so thats are my need i gave the sample fo it you can use the cards more to make welll alignement an keep my reference style in everywhere because i wanted the site entireyly with that style so these are my need genearate with my needs ang ave me the full code of iti
+
+ensure that dont make any mistakes in the code !!!
