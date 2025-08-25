@@ -1,4 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ChevronDown, 
@@ -23,6 +25,8 @@ const Navbar = () => {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,51 +36,75 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (sectionId) => {
+    if (location.pathname !== '/') {
+      navigate('/', { replace: true });
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    setActiveDropdown(null);
+    setIsMobileMenuOpen(false);
+  };
+
   const navItems = [
     {
       name: 'Platform',
+      sectionId: 'platform',
       items: [
-        { name: 'Agentic Workflows', icon: Workflow },
-        { name: 'AI Agent Platform', icon: Bot },
-        { name: 'Integrations', icon: Plug },
-        { name: 'Database, Memory & RAG', icon: Database },
-        { name: 'Security & Deployment', icon: Shield }
+        { name: 'Agentic Workflows', icon: Workflow, path: '/platform/agentic-workflows' },
+        { name: 'AI Agent Platform', icon: Bot, path: '/platform/ai-agent-platform' },
+        { name: 'Integrations', icon: Plug, path: '/platform/integrations' },
+        { name: 'Database, Memory & RAG', icon: Database, path: '/platform/database-memory-rag' },
+        { name: 'Security & Deployment', icon: Shield, path: '/platform/security-deployment' }
       ]
     },
     {
       name: 'AI Agents',
+      sectionId: 'ai-agents',
       items: [
-        { name: 'Customer Support Agent', icon: MessageCircle },
-        { name: 'Sales Agent', icon: Users },
-        { name: 'Marketing Agent', icon: Zap },
-        { name: 'Data Analysis Agent', icon: FileText }
+        { name: 'Customer Support Agent', icon: MessageCircle, path: '/agents/customer-support' },
+        { name: 'Sales Agent', icon: Users, path: '/agents/sales' },
+        { name: 'Marketing Agent', icon: Zap, path: '/agents/marketing' },
+        { name: 'Data Analysis Agent', icon: FileText, path: '/agents/data-analysis' }
       ]
     },
     {
       name: 'Solutions',
+      sectionId: 'solutions',
       items: [
-        { name: 'Enterprise', icon: Building },
-        { name: 'Small Business', icon: Users },
-        { name: 'Developer Tools', icon: FileText },
-        { name: 'Custom Solutions', icon: Zap }
+        { name: 'Enterprise', icon: Building, path: '/solutions/enterprise' },
+        { name: 'Small Business', icon: Users, path: '/solutions/small-business' },
+        { name: 'Developer Tools', icon: FileText, path: '/solutions/developer-tools' },
+        { name: 'Custom Solutions', icon: Zap, path: '/solutions/custom-solutions' }
       ]
     },
     {
       name: 'Resources',
+      sectionId: 'resources',
       items: [
-        { name: 'Documentation', icon: BookOpen },
-        { name: 'API Reference', icon: FileText },
-        { name: 'Tutorials', icon: BookOpen },
-        { name: 'Community', icon: MessageCircle }
+        { name: 'Documentation', icon: BookOpen, path: '/resources/documentation' },
+        { name: 'API Reference', icon: FileText, path: '/resources/api-reference' },
+        { name: 'Tutorials', icon: BookOpen, path: '/resources/tutorials' },
+        { name: 'Community', icon: MessageCircle, path: '/resources/community' }
       ]
     },
     {
       name: 'About',
+      sectionId: 'about',
       items: [
-        { name: 'Company', icon: Building },
-        { name: 'Team', icon: Users },
-        { name: 'Careers', icon: Zap },
-        { name: 'Contact', icon: MessageCircle }
+        { name: 'Company', icon: Building, path: '/about/company' },
+        { name: 'Team', icon: Users, path: '/about/team' },
+        { name: 'Careers', icon: Zap, path: '/about/careers' },
+        { name: 'Contact', icon: MessageCircle, path: '/about/contact' }
       ]
     }
   ];
@@ -89,9 +117,14 @@ const Navbar = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const handleMainNavClick = (item) => {
+    if (item.sectionId) {
+      scrollToSection(item.sectionId);
+    }
+  };
+
   return (
     <>
-      {/* Main Navbar */}
       <motion.nav 
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 font-sans ${
           scrolled ? 'bg-black/85 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'
@@ -102,19 +135,17 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            {/* Logo - Updated to match your site */}
             <motion.div 
               className="flex items-center"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <div className="text-white font-light text-xl tracking-tight">
+              <Link to="/" className="text-white font-light text-xl tracking-tight hover:text-white/80 transition-colors">
                 Elam AI
-              </div>
+              </Link>
             </motion.div>
 
-            {/* Desktop Navigation */}
             <motion.div 
               className="hidden md:flex items-center space-x-1"
               initial={{ opacity: 0, y: -10 }}
@@ -124,7 +155,10 @@ const Navbar = () => {
               {navItems.map((item, index) => (
                 <div key={item.name} className="relative group">
                   <motion.button
-                    onClick={() => handleDropdownToggle(index)}
+                    onClick={() => {
+                      handleDropdownToggle(index);
+                      handleMainNavClick(item);
+                    }}
                     onMouseEnter={() => setActiveDropdown(index)}
                     className="flex items-center px-4 py-2 text-sm text-white/70 hover:text-white transition-all duration-200 rounded-lg hover:bg-white/10 group font-medium"
                     whileHover={{ scale: 1.02 }}
@@ -139,7 +173,6 @@ const Navbar = () => {
                     </motion.div>
                   </motion.button>
 
-                  {/* Dropdown Menu */}
                   <AnimatePresence>
                     {activeDropdown === index && (
                       <motion.div
@@ -154,19 +187,18 @@ const Navbar = () => {
                           {item.items.map((subItem, subIndex) => {
                             const IconComponent = subItem.icon;
                             return (
-                              <motion.button
-                                key={subItem.name}
-                                className="w-full flex items-center px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 group font-light"
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 0.1, delay: subIndex * 0.05 }}
-                                whileHover={{ x: 4 }}
-                              >
-                                <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 mr-3 group-hover:bg-white/20 transition-colors duration-200">
-                                  <IconComponent className="h-4 w-4" />
-                                </div>
-                                <span className="font-light leading-relaxed">{subItem.name}</span>
-                              </motion.button>
+                              <motion.div key={subItem.name}>
+                                <Link
+                                  to={subItem.path}
+                                  className="w-full flex items-center px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 group font-light"
+                                  onClick={() => setActiveDropdown(null)}
+                                >
+                                  <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-white/10 mr-3 group-hover:bg-white/20 transition-colors duration-200">
+                                    <IconComponent className="h-4 w-4" />
+                                  </div>
+                                  <span className="font-light leading-relaxed">{subItem.name}</span>
+                                </Link>
+                              </motion.div>
                             );
                           })}
                         </div>
@@ -177,7 +209,6 @@ const Navbar = () => {
               ))}
             </motion.div>
 
-            {/* Desktop CTA Button - Updated styling */}
             <motion.div 
               className="hidden md:flex items-center"
               initial={{ opacity: 0, x: 20 }}
@@ -192,12 +223,12 @@ const Navbar = () => {
                   transition: { duration: 0.2 }
                 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => scrollToSection('contact')}
               >
                 Speak to us
               </motion.button>
             </motion.div>
 
-            {/* Mobile Menu Button */}
             <div className="md:hidden">
               <motion.button
                 onClick={handleMobileMenuToggle}
@@ -260,16 +291,15 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             <div className="p-6 pt-20">
-              {/* Logo in mobile menu */}
               <motion.div 
                 className="flex items-center justify-between mb-8"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
               >
-                <div className="text-white font-light text-xl tracking-tight">
+                <Link to="/" className="text-white font-light text-xl tracking-tight">
                   Elam AI
-                </div>
+                </Link>
                 <motion.button
                   onClick={handleMobileMenuToggle}
                   className="text-white p-2 rounded-lg hover:bg-white/10 transition-colors duration-200"
@@ -280,7 +310,6 @@ const Navbar = () => {
                 </motion.button>
               </motion.div>
 
-              {/* Mobile Navigation Items */}
               <motion.div 
                 className="space-y-2"
                 initial={{ opacity: 0, y: 20 }}
@@ -290,7 +319,10 @@ const Navbar = () => {
                 {navItems.map((item, index) => (
                   <div key={item.name}>
                     <motion.button
-                      onClick={() => handleDropdownToggle(index)}
+                      onClick={() => {
+                        handleDropdownToggle(index);
+                        if (item.sectionId) handleMainNavClick(item);
+                      }}
                       className="w-full flex items-center justify-between px-4 py-3 text-base text-white/70 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 font-medium"
                       whileHover={{ x: 4 }}
                       whileTap={{ scale: 0.98 }}
@@ -304,7 +336,6 @@ const Navbar = () => {
                       </motion.div>
                     </motion.button>
 
-                    {/* Mobile Dropdown Content */}
                     <AnimatePresence>
                       {activeDropdown === index && (
                         <motion.div
@@ -318,17 +349,19 @@ const Navbar = () => {
                             {item.items.map((subItem, subIndex) => {
                               const IconComponent = subItem.icon;
                               return (
-                                <motion.button
-                                  key={subItem.name}
-                                  className="w-full flex items-center px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 font-light"
-                                  initial={{ opacity: 0, x: -20 }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  transition={{ duration: 0.2, delay: subIndex * 0.05 }}
-                                  whileHover={{ x: 4 }}
-                                >
-                                  <IconComponent className="h-4 w-4 mr-3 opacity-60" />
-                                  <span className="font-light leading-relaxed">{subItem.name}</span>
-                                </motion.button>
+                                <motion.div key={subItem.name}>
+                                  <Link
+                                    to={subItem.path}
+                                    className="w-full flex items-center px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 font-light"
+                                    onClick={() => {
+                                      setActiveDropdown(null);
+                                      setIsMobileMenuOpen(false);
+                                    }}
+                                  >
+                                    <IconComponent className="h-4 w-4 mr-3 opacity-60" />
+                                    <span className="font-light leading-relaxed">{subItem.name}</span>
+                                  </Link>
+                                </motion.div>
                               );
                             })}
                           </div>
@@ -339,7 +372,6 @@ const Navbar = () => {
                 ))}
               </motion.div>
 
-              {/* Mobile CTA Button - Updated styling */}
               <motion.div 
                 className="mt-8"
                 initial={{ opacity: 0, y: 20 }}
@@ -353,12 +385,15 @@ const Navbar = () => {
                     y: -1
                   }}
                   whileTap={{ scale: 0.98 }}
+                  onClick={() => {
+                    scrollToSection('contact');
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   Speak to us
                 </motion.button>
               </motion.div>
 
-              {/* Mobile Additional Info - Updated typography */}
               <motion.div 
                 className="mt-8 pt-6 border-t border-white/10"
                 initial={{ opacity: 0, y: 20 }}

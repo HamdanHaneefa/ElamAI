@@ -1,3 +1,4 @@
+
 import React from 'react';
 import HeroSection from '../components/HeroSection';
 import AIAgentsSection from '../components/AgentSection';
@@ -8,10 +9,15 @@ const Homepage = () => {
   return (
     <div className="min-h-screen">
       <HeroSection />
-      <AIAgentsSection />
-      <SolutionsSection />
-      <MultiAgentSection/>
-      {/* Add more sections here as needed */}
+      <div id="ai-agents">
+        <AIAgentsSection />
+      </div>
+      <div id="solutions">
+        <SolutionsSection />
+      </div>
+      <div id="platform">
+        <MultiAgentSection/>
+      </div>
     </div>
   );
 };
