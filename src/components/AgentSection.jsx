@@ -146,7 +146,7 @@ const AIAgentsSection = () => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 relative overflow-hidden font-sans"
       initial="hidden"
       animate="visible"
@@ -154,7 +154,7 @@ const AIAgentsSection = () => {
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <motion.div 
+        <motion.div
           className="absolute w-96 h-96 bg-blue-500/8 rounded-full blur-3xl pointer-events-none"
           style={{ left: "20%", top: "20%" }}
           animate={{
@@ -164,10 +164,10 @@ const AIAgentsSection = () => {
           transition={{
             duration: 6,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
-        <motion.div 
+        <motion.div
           className="absolute w-80 h-80 bg-purple-500/6 rounded-full blur-3xl pointer-events-none"
           style={{ right: "15%", bottom: "30%" }}
           animate={{
@@ -177,36 +177,36 @@ const AIAgentsSection = () => {
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
       </div>
 
       <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
         <div className="max-w-6xl mx-auto">
-          
           {/* Header Section */}
           <div className="text-center mb-12 sm:mb-16">
-            <motion.h2 
+            <motion.h2
               className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light text-white mb-6 leading-tight tracking-tight"
               variants={itemVariants}
             >
-              AI Agents: Workforce With<br />
+              AI Agents: Workforce With
+              <br />
               Human-Level Performance
             </motion.h2>
-            
-            <motion.p 
+
+            <motion.p
               className="text-base sm:text-lg lg:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed font-light mb-8"
               variants={itemVariants}
             >
-              AI agents deliver precise, efficient task automation, matching human-level 
-              performance. They operate continuously, reducing errors and increasing 
-              productivity, allowing businesses to scale fast without additional human 
-              resource costs.
+              AI agents deliver precise, efficient task automation, matching
+              human-level performance. They operate continuously, reducing
+              errors and increasing productivity, allowing businesses to scale
+              fast without additional human resource costs.
             </motion.p>
-            
+
             <motion.button
-              className="inline-flex items-center justify-center bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-light transition-all duration-300 text-sm sm:text-base shadow-lg hover:shadow-xl hover:bg-gray-100"
+              className="inline-flex items-center justify-center bg-white/95 text-black px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl font-medium transition-all duration-300 text-sm sm:text-base shadow-lg hover:shadow-xl hover:bg-white/90"
               variants={itemVariants}
               whileHover={{
                 scale: 1.02,
@@ -223,33 +223,37 @@ const AIAgentsSection = () => {
           </div>
 
           {/* Horizontal Carousel */}
-          <motion.div 
-            className="relative"
-            variants={itemVariants}
-          >
-            <div 
+          <motion.div className="relative" variants={itemVariants}>
+            <div
               className="overflow-hidden"
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
             >
-              <motion.div 
+              <motion.div
                 className="flex transition-transform duration-500 ease-in-out"
-                style={{ 
-                  transform: `translateX(-${currentSlide * (100 / cardsPerView)}%)`,
-                  gap: cardsPerView === 1 ? '0px' : '24px'
+                style={{
+                  transform: `translateX(-${
+                    currentSlide * (100 / cardsPerView)
+                  }%)`,
+                  gap: cardsPerView === 1 ? "0px" : "24px",
                 }}
               >
                 {agents.map((agent, index) => (
-                  <motion.div 
+                  <motion.div
                     key={agent.id}
                     className="flex-shrink-0"
-                    style={{ 
-                      width: cardsPerView === 1 ? '100%' : `calc(${100 / cardsPerView}% - ${24 * (cardsPerView - 1) / cardsPerView}px)`
+                    style={{
+                      width:
+                        cardsPerView === 1
+                          ? "100%"
+                          : `calc(${100 / cardsPerView}% - ${
+                              (24 * (cardsPerView - 1)) / cardsPerView
+                            }px)`,
                     }}
-                    whileHover={{ 
+                    whileHover={{
                       y: -5,
-                      transition: { duration: 0.2 }
+                      transition: { duration: 0.2 },
                     }}
                   >
                     <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden hover:border-white/20 transition-all duration-300 h-full mx-3 sm:mx-0">
@@ -261,13 +265,13 @@ const AIAgentsSection = () => {
                           className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent" />
-                        
+
                         {/* Icon */}
                         <div className="absolute top-3 right-3 w-8 h-8 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center text-white">
                           <agent.icon className="w-4 h-4" />
                         </div>
                       </div>
-                      
+
                       {/* Compact Content */}
                       <div className="p-4">
                         <div className="mb-2">
@@ -275,15 +279,15 @@ const AIAgentsSection = () => {
                             {agent.category}
                           </span>
                         </div>
-                        
+
                         <h3 className="text-lg font-light text-white mb-3 leading-tight">
                           {agent.title}
                         </h3>
-                        
+
                         <div className="space-y-1.5">
                           {agent.features.map((feature, idx) => (
-                            <div 
-                              key={idx} 
+                            <div
+                              key={idx}
                               className="flex items-center gap-2 text-white/70 text-sm font-light"
                             >
                               <div className="w-1.5 h-1.5 bg-white/40 rounded-full flex-shrink-0" />
@@ -299,14 +303,14 @@ const AIAgentsSection = () => {
             </div>
 
             {/* Navigation Buttons */}
-            <button 
+            <button
               onClick={prevSlide}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 z-20"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
-            
-            <button 
+
+            <button
               onClick={nextSlide}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-all duration-300 z-20"
             >
@@ -320,15 +324,14 @@ const AIAgentsSection = () => {
                   key={index}
                   onClick={() => setCurrentSlide(index)}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'bg-white w-6' 
-                      : 'bg-white/30 w-1.5 hover:bg-white/50'
+                    index === currentSlide
+                      ? "bg-white w-6"
+                      : "bg-white/30 w-1.5 hover:bg-white/50"
                   }`}
                 />
               ))}
             </div>
           </motion.div>
-
         </div>
       </div>
     </motion.div>

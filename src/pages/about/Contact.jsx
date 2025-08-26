@@ -1,10 +1,85 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import PageLayout from '../../components/PageLayout';
 import { Mail, Phone, ArrowRight, Send } from 'lucide-react';
+import { createClient } from '@supabase/supabase-js'
 
 const Contact = () => {
+  
+  const supabaseUrl = 'https://itvhwuwyfmsqkpbwewfx.supabase.co'
+  const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml0dmh3dXd5Zm1zcWtwYndld2Z4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTYyMTI0MTMsImV4cCI6MjA3MTc4ODQxM30.UmfNFjJrtZS99wSYwUaNSQERWwjlIH1Rk-gdrpMuQhY'
+  const supabase = createClient(supabaseUrl, supabaseKey)
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    company: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', or null
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      if (!supabase) {
+        console.error('Supabase client not available');
+        setSubmitStatus('error');
+        return;
+      }
+
+      // Insert data into Supabase
+      const { data, error } = await supabase
+        .from('contact_messages')
+        .insert([
+          {
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            email: formData.email,
+            company: formData.company,
+            subject: formData.subject,
+            message: formData.message,
+            created_at: new Date().toISOString()
+          }
+        ]);
+
+      if (error) {
+        console.error('Supabase error:', error);
+        setSubmitStatus('error');
+      } else {
+        console.log('Data successfully saved to Supabase:', data);
+        setSubmitStatus('success');
+        // Reset form only on successful save
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          company: '',
+          subject: '',
+          message: ''
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -31,14 +106,16 @@ const Contact = () => {
       title: "Email Us",
       description: "Get in touch with our team for any inquiries or support.",
       contact: "contact@elamai.in",
-      action: "Send Email"
+      action: "Send Email",
+      link: "mailto:contact@elamai.in"
     },
     {
       icon: Phone,
       title: "Call Us",
       description: "Speak directly with our AI automation specialists.",
       contact: "+91 97474 19297",
-      action: "Call Now"
+      action: "Call Now",
+      link: "tel:+919747419297"
     }
   ];
 
@@ -51,7 +128,7 @@ const Contact = () => {
     >
       {/* Contact Methods */}
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12"
+        className="grid grid-cols-2 gap-3 md:gap-6 mb-12 max-w-4xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -62,24 +139,25 @@ const Contact = () => {
           return (
             <motion.div
               key={index}
-              className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:border-white/20 transition-all duration-300 text-center"
+              className="bg-white/5 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/10 hover:border-white/20 transition-all duration-300 text-center"
               variants={itemVariants}
               whileHover={{ y: -3, transition: { duration: 0.2 } }}
             >
-              <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                <IconComponent className="w-7 h-7 text-white" />
+              <div className="w-10 h-10 md:w-14 md:h-14 bg-white/10 rounded-xl flex items-center justify-center mx-auto mb-3 md:mb-4">
+                <IconComponent className="w-5 h-5 md:w-7 md:h-7 text-white" />
               </div>
-              <h3 className="text-lg font-medium text-white mb-2">{method.title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed mb-3">{method.description}</p>
-              <div className="text-white font-medium mb-4">{method.contact}</div>
-              <motion.button
-                className="inline-flex items-center space-x-2 bg-white/10 hover:bg-white/20 px-5 py-2.5 rounded-lg transition-all duration-300 text-white text-sm font-medium"
+              <h3 className="text-sm md:text-lg font-medium text-white mb-2">{method.title}</h3>
+              <p className="text-white/60 text-xs md:text-sm leading-relaxed mb-2 md:mb-3">{method.description}</p>
+              <div className="text-white font-medium mb-3 md:mb-4 text-xs md:text-base">{method.contact}</div>
+              <motion.a
+                href={method.link}
+                className="inline-flex items-center space-x-1 md:space-x-2 bg-white/10 hover:bg-white/20 px-3 py-2 md:px-5 md:py-2.5 rounded-lg transition-all duration-300 text-white text-xs md:text-sm font-medium"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span>{method.action}</span>
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
+                <ArrowRight className="w-3 h-3 md:w-4 md:h-4" />
+              </motion.a>
             </motion.div>
           );
         })}
@@ -102,7 +180,7 @@ const Contact = () => {
           </p>
         </div>
 
-        <form className="max-w-3xl mx-auto">
+        <form className="max-w-3xl mx-auto" onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block text-white/70 text-xs font-medium mb-1">
@@ -110,8 +188,11 @@ const Contact = () => {
               </label>
               <input
                 type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleInputChange}
                 className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
-                placeholder="John"
+                placeholder="First name"
                 required
               />
             </div>
@@ -121,8 +202,11 @@ const Contact = () => {
               </label>
               <input
                 type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleInputChange}
                 className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
-                placeholder="Doe"
+                placeholder="Last name"
                 required
               />
             </div>
@@ -135,8 +219,11 @@ const Contact = () => {
               </label>
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
                 className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
-                placeholder="john@company.com"
+                placeholder="Email address"
                 required
               />
             </div>
@@ -146,8 +233,11 @@ const Contact = () => {
               </label>
               <input
                 type="text"
+                name="company"
+                value={formData.company}
+                onChange={handleInputChange}
                 className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors"
-                placeholder="Your Company"
+                placeholder="Company name"
               />
             </div>
           </div>
@@ -157,6 +247,9 @@ const Contact = () => {
               Subject *
             </label>
             <select 
+              name="subject"
+              value={formData.subject}
+              onChange={handleInputChange}
               className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-white/40 transition-colors appearance-none"
               style={{
                 backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e")`,
@@ -172,6 +265,7 @@ const Contact = () => {
               <option value="partnership" style={{backgroundColor: '#1a1a1a', color: '#ffffff'}}>Partnership</option>
               <option value="support" style={{backgroundColor: '#1a1a1a', color: '#ffffff'}}>Technical Support</option>
               <option value="pricing" style={{backgroundColor: '#1a1a1a', color: '#ffffff'}}>Pricing Information</option>
+              <option value="consultation" style={{backgroundColor: '#1a1a1a', color: '#ffffff'}}>AI Consultation</option>
             </select>
           </div>
 
@@ -181,21 +275,50 @@ const Contact = () => {
             </label>
             <textarea
               rows="3"
+              name="message"
+              value={formData.message}
+              onChange={handleInputChange}
               className="w-full bg-white/10 border border-white/20 rounded-lg px-3 py-2 text-sm text-white placeholder-white/50 focus:outline-none focus:border-white/40 transition-colors resize-none"
               placeholder="Tell us about your project and how we can help..."
               required
             ></textarea>
           </div>
 
+          {/* Status Messages */}
+          {submitStatus === 'success' && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-4 p-3 bg-green-500/10 border border-green-500/20 rounded-lg text-green-400 text-sm text-center"
+            >
+              Thank you! Your message has been sent successfully. We'll get back to you within 24 hours.
+            </motion.div>
+          )}
+
+          {submitStatus === 'error' && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm text-center"
+            >
+              Sorry, there was an error sending your message. Please try again or contact us directly.
+            </motion.div>
+          )}
+
           <div className="text-center">
             <motion.button
               type="submit"
-              className="inline-flex items-center space-x-2 bg-white text-black px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-white/90 transition-all duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              disabled={isSubmitting}
+              className={`inline-flex items-center space-x-2 px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${
+                isSubmitting 
+                  ? 'bg-white/50 text-black/50 cursor-not-allowed' 
+                  : 'bg-white text-black hover:bg-white/90'
+              }`}
+              whileHover={!isSubmitting ? { scale: 1.02 } : {}}
+              whileTap={!isSubmitting ? { scale: 0.98 } : {}}
             >
               <Send className="w-4 h-4" />
-              <span>Send Message</span>
+              <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
             </motion.button>
           </div>
         </form>

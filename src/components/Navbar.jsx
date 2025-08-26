@@ -17,6 +17,7 @@ import {
   Building,
   BookOpen,
   MessageCircle,
+  ArrowRight,
   Zap
 } from 'lucide-react';
 import Logo from '../assets/Logo.png'
@@ -235,21 +236,23 @@ const Navbar = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <motion.div
-                whileHover={{
-                  scale: 1.02,
-                  y: -1,
-                  transition: { duration: 0.2 },
-                }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Link
-                  to="/about/contact"
-                  className="bg-white text-gray-900 px-6 py-2.5 rounded-xl text-sm font-light transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-gray-100 inline-block"
-                >
-                  Speak to us
-                </Link>
-              </motion.div>
+            <motion.div
+  className="hidden md:flex items-center"
+  initial={{ opacity: 0, x: 20 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.6, delay: 0.3 }}
+>
+  <Link to="/about/contact">
+    <motion.button
+      className="inline-flex items-center space-x-2 bg-white/95 text-black px-5 py-2 rounded-xl font-medium hover:bg-white/90 transition-all duration-300"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <span>Speak to us</span>
+      <ArrowRight className="w-4 h-4" />
+    </motion.button>
+  </Link>
+</motion.div>
             </motion.div>
 
             <div className="md:hidden">
@@ -430,18 +433,16 @@ const Navbar = () => {
                 transition={{ duration: 0.4, delay: 0.3 }}
               >
                 <motion.button
-                  className="w-full bg-white text-gray-900 px-6 py-3 rounded-xl text-base font-light transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-gray-100"
-                  whileHover={{
-                    scale: 1.01,
-                    y: -1,
-                  }}
+                  className="inline-flex items-center space-x-3 bg-white text-black px-6 py-3 rounded-xl font-semibold hover:bg-white/90 transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => {
                     scrollToSection("contact");
                     setIsMobileMenuOpen(false);
                   }}
                 >
-                  Speak to us
+                  <span>Speak to us</span>
+                  <ArrowRight className="w-5 h-5" />
                 </motion.button>
               </motion.div>
 

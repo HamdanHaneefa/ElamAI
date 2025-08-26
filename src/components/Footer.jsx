@@ -71,7 +71,7 @@ const Footer = () => {
     <footer className="bg-gradient-to-br from-gray-900 via-black to-gray-900 border-t border-white/10 font-sans">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <motion.div 
+        <motion.div
           className="absolute w-96 h-96 bg-blue-500/4 rounded-full blur-3xl pointer-events-none"
           style={{ left: "10%", bottom: "-20%" }}
           animate={{
@@ -81,14 +81,14 @@ const Footer = () => {
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut",
           }}
         />
       </div>
 
       <div className="relative z-10">
         {/* Main Footer Content */}
-        <motion.div 
+        <motion.div
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16"
           initial="hidden"
           whileInView="visible"
@@ -96,13 +96,9 @@ const Footer = () => {
           variants={containerVariants}
         >
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
-            
             {/* Brand Section */}
-            <motion.div 
-              className="lg:col-span-2"
-              variants={itemVariants}
-            >
-              <motion.div 
+            <motion.div className="lg:col-span-2" variants={itemVariants}>
+              <motion.div
                 className="mb-6"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
@@ -117,13 +113,14 @@ const Footer = () => {
                   />
                 </Link>
                 <p className="text-white/70 text-sm sm:text-base leading-relaxed font-light max-w-xs">
-                  Build an AI workforce that automates tasks efficiently and transforms your business operations.
+                  Build an AI workforce that automates tasks efficiently and
+                  transforms your business operations.
                 </p>
               </motion.div>
 
               {/* Contact Info */}
               <div className="space-y-3 mb-6">
-                <motion.div 
+                <motion.div
                   className="flex items-center gap-3 text-white/60 text-sm font-light"
                   whileHover={{ x: 2, color: "rgba(255,255,255,0.8)" }}
                   transition={{ duration: 0.2 }}
@@ -131,7 +128,7 @@ const Footer = () => {
                   <Mail className="w-4 h-4" />
                   <span>info@elamai.in</span>
                 </motion.div>
-                <motion.div 
+                <motion.div
                   className="flex items-center gap-3 text-white/60 text-sm font-light"
                   whileHover={{ x: 2, color: "rgba(255,255,255,0.8)" }}
                   transition={{ duration: 0.2 }}
@@ -164,10 +161,12 @@ const Footer = () => {
 
             {/* Links Sections - Compact Grid */}
             <motion.div variants={itemVariants}>
-              <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-4 opacity-90">Platform</h4>
+              <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-4 opacity-90">
+                Platform
+              </h4>
               <ul className="space-y-2">
                 {footerLinks.platform.map((link, index) => (
-                  <motion.li 
+                  <motion.li
                     key={link.name}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -187,10 +186,12 @@ const Footer = () => {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-4 opacity-90">Solutions</h4>
+              <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-4 opacity-90">
+                Solutions
+              </h4>
               <ul className="space-y-2">
                 {footerLinks.solutions.map((link, index) => (
-                  <motion.li 
+                  <motion.li
                     key={link.name}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -210,10 +211,12 @@ const Footer = () => {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-4 opacity-90">Resources</h4>
+              <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-4 opacity-90">
+                Resources
+              </h4>
               <ul className="space-y-2">
                 {footerLinks.resources.map((link, index) => (
-                  <motion.li 
+                  <motion.li
                     key={link.name}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -233,17 +236,19 @@ const Footer = () => {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-4 opacity-90">Company</h4>
+              <h4 className="text-white font-medium text-sm uppercase tracking-wider mb-4 opacity-90">
+                Company
+              </h4>
               <ul className="space-y-2">
                 {footerLinks.company.map((link, index) => (
-                  <motion.li 
+                  <motion.li
                     key={link.name}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: 0.8 + index * 0.1 }}
                   >
                     <motion.div whileHover={{ x: 4 }}>
-                      {link.href.startsWith('/') ? (
+                      {link.href.startsWith("/") ? (
                         <Link
                           to={link.href}
                           className="text-white/60 hover:text-white text-sm font-light transition-colors duration-200 block"
@@ -266,7 +271,7 @@ const Footer = () => {
           </div>
 
           {/* CTA Section - Compact */}
-          <motion.div 
+          <motion.div
             className="mt-12 pt-8 border-t border-white/10"
             variants={itemVariants}
           >
@@ -279,7 +284,6 @@ const Footer = () => {
                   Transform your business with AI agents today.
                 </p>
               </div>
-             
               <motion.div
                 whileHover={{
                   scale: 1.02,
@@ -291,14 +295,12 @@ const Footer = () => {
                   transition: { duration: 0.1 },
                 }}
               >
-                <Link 
+                <Link
                   to="/about/contact"
-                  className="inline-flex items-center gap-3 bg-white text-gray-900 px-6 py-3 rounded-xl font-light transition-all duration-300 text-sm shadow-lg hover:shadow-xl hover:bg-gray-100 group flex-shrink-0"
+                  className="inline-flex items-center gap-2 bg-white/95 text-black px-5 py-2.5 rounded-xl font-medium transition-all duration-300 text-sm shadow-lg hover:shadow-xl hover:bg-white/90 group flex-shrink-0"
                 >
                   Speak to us
-                  <motion.div
-                    className="group-hover:translate-x-1 transition-transform duration-300"
-                  >
+                  <motion.div className="group-hover:translate-x-1 transition-transform duration-300">
                     <ArrowRight className="w-4 h-4" />
                   </motion.div>
                 </Link>
@@ -308,7 +310,7 @@ const Footer = () => {
         </motion.div>
 
         {/* Bottom Bar - Minimal */}
-        <motion.div 
+        <motion.div
           className="border-t border-white/10 bg-black/20"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -317,7 +319,7 @@ const Footer = () => {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
-              <motion.p 
+              <motion.p
                 className="text-white/50 font-light text-center sm:text-left"
                 whileHover={{ color: "rgba(255,255,255,0.7)" }}
               >

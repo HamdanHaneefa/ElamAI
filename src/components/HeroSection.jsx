@@ -210,7 +210,7 @@ const HeroSection = () => {
                 >
                   <Link
                     to="/platform/ai-agent-platform"
-                    className="inline-flex items-center justify-center bg-white text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-light transition-all duration-300 text-sm sm:text-base shadow-lg hover:shadow-xl group hover:bg-gray-100"
+                    className="inline-flex items-center justify-center bg-white/95 text-black px-5 sm:px-7 py-2.5 sm:py-3.5 rounded-xl font-medium transition-all duration-300 text-sm sm:text-base shadow-lg hover:shadow-xl group hover:bg-white/90"
                   >
                     <span>Explore Platform</span>
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-200" />
