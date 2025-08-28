@@ -160,16 +160,7 @@ const Documentation = () => {
               Contact Support
             </motion.button>
           </Link>
-          <Link to="/resources/community">
-            <motion.button
-              className="border border-white/20 text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 hover:bg-white/10"
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Join Community
-              <ArrowRight className="w-4 h-4 ml-2 inline" />
-            </motion.button>
-          </Link>
+          
         </motion.div>
       </motion.div>
     </PageLayout>

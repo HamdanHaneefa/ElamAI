@@ -105,66 +105,6 @@ const Company = () => {
         })}
       </div>
 
-      {/* Company Timeline */}
-      <motion.div
-        className="bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-8 lg:p-12 mb-16"
-        variants={itemVariants}
-        whileInView="visible"
-        initial="hidden"
-        viewport={{ once: true }}
-      >
-        <h3 className="text-2xl lg:text-3xl font-light text-white mb-8 text-center">
-          Our Journey
-        </h3>
-        <div className="space-y-6">
-          {milestones.map((milestone, index) => (
-            <motion.div
-              key={index}
-              className="flex items-start space-x-4"
-              variants={itemVariants}
-              whileInView="visible"
-              initial="hidden"
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <div className="flex-shrink-0 w-16 h-8 bg-white/10 rounded-lg flex items-center justify-center">
-                <span className="text-white font-medium text-sm">{milestone.year}</span>
-              </div>
-              <p className="text-white/80 font-light leading-relaxed pt-1">{milestone.event}</p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
-
-      {/* Stats */}
-      <motion.div
-        className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16"
-        variants={itemVariants}
-        whileInView="visible"
-        initial="hidden"
-        viewport={{ once: true }}
-      >
-        {[
-          { number: '50,000+', label: 'Businesses Served' },
-          { number: '1M+', label: 'AI Interactions Daily' },
-          { number: '99.9%', label: 'Uptime Guarantee' },
-          { number: '24/7', label: 'Support Available' }
-        ].map((stat, index) => (
-          <motion.div
-            key={index}
-            className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 text-center"
-            variants={itemVariants}
-            whileInView="visible"
-            initial="hidden"
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-          >
-            <h3 className="text-2xl font-light text-white mb-2">{stat.number}</h3>
-            <p className="text-white/70 font-light text-sm">{stat.label}</p>
-          </motion.div>
-        ))}
-      </motion.div>
-
       {/* CTA Section */}
       <motion.div
         className="text-center"
@@ -181,15 +121,6 @@ const Company = () => {
           our team, we'd love to hear from you.
         </p>
         <motion.div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link to="/about/careers">
-            <motion.button
-              className="bg-white text-gray-900 px-8 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-gray-100"
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              View Careers
-            </motion.button>
-          </Link>
           <Link to="/about/contact">
             <motion.button
               className="border border-white/20 text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 hover:bg-white/10"

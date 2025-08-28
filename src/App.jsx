@@ -42,6 +42,8 @@ import Careers from './pages/about/Careers';
 import Contact from './pages/about/Contact';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 
+import AnalyticsTracker from './utils/AnalyticsTracker';
+
 function App() {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -66,6 +68,8 @@ function App() {
           <ScrollToTop />
           <TitleUpdater />
           <Navbar />
+          {/*  Analytics Tracker here */}
+          <AnalyticsTracker />
           
           <Routes>
             {/* Home Route */}

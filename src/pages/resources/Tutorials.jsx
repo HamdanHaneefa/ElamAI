@@ -189,13 +189,6 @@ const Tutorials = () => {
           from AI experts and fellow developers.
         </p>
         <motion.div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <motion.button
-            className="bg-white text-gray-900 px-8 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-gray-100"
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Start Learning
-          </motion.button>
           <Link to="/resources/community">
             <motion.button
               className="border border-white/20 text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 hover:bg-white/10"

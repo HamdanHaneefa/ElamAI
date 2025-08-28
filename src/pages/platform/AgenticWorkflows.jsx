@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -7,11 +6,6 @@ import { Workflow, ArrowRight, CheckCircle, Zap, Settings, Users } from 'lucide-
 
 const AgenticWorkflows = () => {
   const features = [
-    {
-      icon: Workflow,
-      title: 'Drag & Drop Builder',
-      description: 'Create complex workflows with our intuitive visual builder. No coding required.'
-    },
     {
       icon: Zap,
       title: 'Real-time Execution',
@@ -125,13 +119,6 @@ const AgenticWorkflows = () => {
           Connect with our team to see how Elam AI can streamline your processes.
         </p>
         <motion.div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <motion.button
-            className="bg-white text-gray-900 px-8 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-gray-100"
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Start Free Trial
-          </motion.button>
           <Link to="/about/contact">
             <motion.button
               className="border border-white/20 text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 hover:bg-white/10"

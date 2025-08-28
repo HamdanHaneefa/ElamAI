@@ -110,42 +110,6 @@ const AIAgentPlatform = () => {
       </motion.div>
 
       {/* Architecture Overview */}
-      <motion.div
-        className="text-center mb-16"
-        variants={itemVariants}
-        whileInView="visible"
-        initial="hidden"
-        viewport={{ once: true }}
-      >
-        <h3 className="text-2xl lg:text-3xl font-light text-white mb-6">
-          Built for Scale and Performance
-        </h3>
-        <p className="text-white/70 mb-8 max-w-3xl mx-auto font-light leading-relaxed">
-          Our platform architecture is designed to handle enterprise workloads with 99.9% uptime, 
-          automatic scaling, and global deployment capabilities. Built on cloud-native technologies 
-          for reliability and performance.
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { title: '99.9% Uptime', subtitle: 'Guaranteed availability' },
-            { title: 'Auto Scaling', subtitle: 'Handle any load' },
-            { title: 'Global CDN', subtitle: 'Low latency worldwide' }
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              className="bg-white/5 rounded-xl p-6"
-              variants={itemVariants}
-              whileInView="visible"
-              initial="hidden"
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-            >
-              <h4 className="text-2xl font-light text-white mb-2">{stat.title}</h4>
-              <p className="text-white/60 font-light">{stat.subtitle}</p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
 
       {/* CTA Section */}
       <motion.div
@@ -163,13 +127,6 @@ const AIAgentPlatform = () => {
           enhance customer experiences, and drive innovation.
         </p>
         <motion.div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <motion.button
-            className="bg-white text-gray-900 px-8 py-3 rounded-xl font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:bg-gray-100"
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Get Started Free
-          </motion.button>
           <Link to="/resources/documentation">
             <motion.button
               className="border border-white/20 text-white px-8 py-3 rounded-xl font-medium transition-all duration-300 hover:bg-white/10"
