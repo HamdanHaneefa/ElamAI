@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './index.css';
@@ -48,11 +47,19 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    // Simulate async data fetching (replace with your real fetch logic)
+    const fetchInitialData = async () => {
+      try {
+        // Example: await fetch('/api/initial-data');
+        // If you have multiple fetches:
+        // await Promise.all([fetch1(), fetch2(), ...]);
+        await new Promise(resolve => setTimeout(resolve, 1500)); // Remove this in production
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    return () => clearTimeout(timer);
+    fetchInitialData();
   }, []);
 
   const handleLoadingComplete = () => {

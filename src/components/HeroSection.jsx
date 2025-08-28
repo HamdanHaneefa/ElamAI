@@ -334,18 +334,6 @@ const HeroSection = () => {
                 })}
               </div>
             </div>
-
-            {/* Trust Indicator */}
-            <motion.div
-              className="text-center mt-10 sm:mt-12"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5, duration: 0.8 }}
-            >
-              <p className="text-white/50 font-light text-xs sm:text-sm">
-                Trusted by 500+ enterprises worldwide
-              </p>
-            </motion.div>
           </motion.div>
         </div>
       </div>
