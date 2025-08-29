@@ -8,6 +8,7 @@ import Loader from './components/SiteLoader';
 import TitleUpdater from './components/TitleUpdater';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import Sitemap from './components/Sitemap';
 
 // Platform Pages
 import AgenticWorkflows from './pages/platform/AgenticWorkflows';
@@ -75,12 +76,14 @@ function App() {
           <ScrollToTop />
           <TitleUpdater />
           <Navbar />
-          {/*  Analytics Tracker here */}
           <AnalyticsTracker />
           
           <Routes>
             {/* Home Route */}
             <Route path="/" element={<Homepage />} />
+            
+            {/* Sitemap Route */}
+            <Route path="/sitemap.xml" element={<Sitemap />} />
             
             {/* Platform Routes */}
             <Route path="/platform/agentic-workflows" element={<AgenticWorkflows />} />
@@ -118,7 +121,6 @@ function App() {
           </Routes>
 
           <Footer />
-          {/* Floating WhatsApp - shows only on Home and Contact when user scrolls, auto hides */}
           <FloatingWhatsApp phoneNumber="+919747419297" message="Hi! I came from your website." />
         </div>
       )}
